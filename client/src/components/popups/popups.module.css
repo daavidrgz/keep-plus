@@ -1,0 +1,257 @@
+.addNotePopup {
+	cursor: auto;
+	z-index: 5;
+	visibility: hidden;
+	width: 30vw;
+
+	position: fixed;
+	top: 110vh;
+	left: calc(50vw - 30vw/2);
+
+	padding: 40px;
+
+	background-color: var(--white-color);
+	border-radius: 10px;
+
+	transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.show {
+	top: 15vh;
+	visibility: visible;
+
+	box-shadow: 0 0 30px 5px var(--shadow-color);
+}
+
+.popupTitleWraper {
+	position: relative;
+	bottom: 10px;
+	margin-bottom: 15px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.popupTitle {
+	color: var(--dark-color);
+	font-size: 2rem;
+	font-weight: 700;
+}
+.popupTitle span {
+	font-weight: 400;
+}
+
+.colorPickerWraper {
+	position: relative;
+	width: 25px;
+	height: 25px;
+}
+.colorPickerBtn {
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	
+	border-radius: 50%;
+	border: 2px solid var(--dark-color);
+}
+.colorSelector {
+	position: relative;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+
+	opacity: 0%;
+
+	border: 2px solid var(--dark-color);
+}
+.showColorSelector {
+	opacity: 100%;
+
+	transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
+}
+.colorPickerContainer {
+	visibility: hidden;
+	position: absolute;
+	top: 120%;
+	left: 120%;
+
+	width: 0px;
+	height: 0px;
+
+	padding: 0px;
+	display: grid;
+	grid-template: 
+		"a a a" 40px
+		"a a a" 40px
+		"a a a" 40px;
+
+	background-color: var(--white-color);
+	border-radius: 10px;
+	border-top-left-radius: 5px;
+	box-shadow: 0 0 10px 5px var(--shadow-color);
+
+	transition: all 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.showColorPicker {
+	visibility: visible;
+	width: 100px;
+	height: 110px;
+	padding: 20px;
+}
+
+.noteTitleWraper {
+	position: relative;
+	width: 100%;
+	height: 10vh;
+
+	overflow: hidden;
+}
+.noteTitleInput {
+	width: 96%;
+
+	color: var(--dark-color);
+	margin: 15px 0;
+	font-size: 1.05em;
+	font-weight: 600;
+
+	border: none;
+	background: none;
+}
+.noteTitleInput:focus {
+	outline: none;
+}
+
+.noteBodyWraper {
+	position: relative;
+	width: 100%;
+	height: 38vh;
+	margin-top: 10px;
+
+	overflow-x: hidden;
+}
+.noteBodyInput {
+	width: 96%;
+	height: 80%;
+	margin: 15px 0;
+
+	background: none;
+	border: none;
+	color: var(--dark-color);
+	font-weight: 700;
+	font-family: 'San Francisco';
+
+	resize: none;
+}
+.noteBodyInput:focus {
+	outline: none;
+}
+
+.noteFieldText {
+	color: var(--dark-color);
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.noteTitleInput:focus ~ .inputBar {
+	width: 100%;
+}
+.noteBodyInput:focus ~ .inputBar {
+	width: 100%;
+}
+
+
+.buttonsContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-top: 20px;
+}
+.popupBtn {
+	cursor: pointer;
+	width: 100px;
+	height: 30px;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	border-radius: 5px;
+	border: none;
+	font-weight: 600;
+
+	color: var(--white-color);
+}
+.popupBtn[type="reset"] {
+	width: 150px;
+}
+.popupBtn i {
+	font-size: 0.8rem;
+}
+.resetBtn{
+	background-color: var(--dark-color);
+}
+.saveBtn{
+	background-color: var(--dark-color);
+}
+
+.inputBar {
+	position: absolute;
+	bottom: 15px;
+	z-index: 2;
+	opacity: 100%;
+	min-height: 2px;
+	width: 0%;
+
+	background-color: var(--blue-dark-color);
+
+	transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+
+
+
+
+
+/* DELETE NOTE POPUP */
+.deleteNotePopup {
+	cursor: auto;
+	z-index: 5;
+	visibility: hidden;
+	width: 30vw;
+
+	position: fixed;
+	top: 110vh;
+	left: calc(50vw - 30vw/2);
+
+	padding: 40px;
+
+	background-color: var(--white-color);
+	border-radius: 10px;
+
+	transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.showDelete {
+	top: 30vh;
+	visibility: visible;
+
+	box-shadow: 0 0 30px 5px var(--shadow-color);
+}
+.deletePopupTitle {
+	font-size: 3rem;
+	font-weight: 600;
+
+	margin-bottom: 80px;
+	text-align: center;
+}
+.deletePopupTitle span {
+	font-weight: 400;
+}
+.cancelBtn {
+	width: 30%;
+	background-color: var(--dark-color);
+}
+.yesBtn {
+	width: 15%;
+	background-color: var(--red-color);
+}
