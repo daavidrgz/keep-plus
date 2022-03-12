@@ -1,0 +1,603 @@
+.addNotePopup {
+	cursor: auto;
+	z-index: 5;
+	visibility: hidden;
+	width: 30vw;
+
+	position: fixed;
+	top: 110vh;
+	left: calc(50vw - 30vw/2);
+
+	padding: 40px;
+
+	background-color: var(--white-color);
+	box-shadow: 0 0 30px 5px var(--shadow-color);
+	border-radius: 10px;
+
+	transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.show {
+	top: 15vh !important;
+	visibility: visible !important;
+}
+
+.popupTitleWraper {
+	position: relative;
+	bottom: 10px;
+	margin-bottom: 15px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+.popupTitle {
+	color: var(--dark-color);
+	font-size: 2rem;
+	font-weight: 700;
+}
+.popupTitle span {
+	font-weight: 400;
+}
+
+.rightTitleContainer {
+	width: 140px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.colorPickerWraper {
+	position: relative;
+	width: 25px;
+	height: 25px;
+}
+.colorPickerBtn {
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	
+	border-radius: 50%;
+	border: 2px solid var(--dark-color);
+}
+.colorSelector {
+	position: relative;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+
+	opacity: 0;
+
+	border: 2px solid var(--dark-color);
+}
+.showColorSelector {
+	opacity: 1 !important;
+
+	transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.1s;
+}
+.colorPickerContainer {
+	visibility: hidden;
+	position: absolute;
+	top: 120%;
+	left: 120%;
+
+	width: 0px;
+	height: 0px;
+
+	padding: 0px;
+	display: grid;
+	grid-template: 
+		"a a a" 40px
+		"a a a" 40px
+		"a a a" 40px;
+
+	background-color: var(--white-color);
+	border-radius: 10px;
+	border-top-left-radius: 5px;
+	box-shadow: 0 0 10px 5px var(--shadow-color);
+
+	transition: all 0.15s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.showColorPicker {
+	visibility: visible !important;
+	width: 100px !important;
+	height: 110px !important;
+	padding: 20px !important;
+}
+
+.noteTitleWraper {
+	position: relative;
+	width: 100%;
+	height: 95px;
+
+	overflow: hidden;
+}
+.noteTitleInput {
+	width: 96%;
+
+	color: var(--dark-color);
+	margin: 15px 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+
+	border: none;
+	background: none;
+}
+.noteTitleInput:focus {
+	outline: none;
+}
+
+.noteBodyWraper {
+	position: relative;
+	width: 100%;
+	height: 350px;
+	margin-top: 10px;
+
+	overflow-x: hidden;
+}
+.noteBodyInput {
+	width: 96%;
+	height: 80%;
+	margin: 15px 0;
+
+	background: none;
+	border: none;
+	color: var(--dark-color);
+	font-weight: 700;
+	font-size: 1.1rem;
+	font-family: inherit;
+
+	resize: none;
+	scrollbar-color: var(--dark-color) var(--hover-color);
+	scrollbar-width: thin;
+}
+.noteBodyInput::-webkit-scrollbar {
+	width: 5px;
+}
+.noteBodyInput::-webkit-scrollbar-track-piece {
+	background-color: var(--hover-color);
+}
+.noteBodyInput::-webkit-scrollbar-thumb:vertical {
+	background-color: var(--dark-color);
+}
+.noteBodyInput:focus {
+	outline: none;
+}
+
+.noteFieldText {
+	color: var(--dark-color);
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.noteTitleInput:focus ~ .inputBar {
+	width: 100%;
+}
+.noteBodyInput:focus ~ .inputBar {
+	width: 100%;
+}
+
+
+.buttonsContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-top: 20px;
+}
+.popupBtn {
+	cursor: pointer;
+	width: 100px;
+	height: 30px;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	border-radius: 5px;
+	border: none;
+	font-weight: 600;
+
+	color: var(--white-color);
+}
+.popupBtn[type="reset"] {
+	width: 150px;
+}
+.popupBtn i {
+	font-size: 0.8rem;
+}
+.resetBtn{
+	background-color: var(--dark-color);
+}
+.saveBtn{
+	background-color: var(--dark-color);
+}
+
+.inputBar {
+	position: absolute;
+	bottom: 15px;
+	z-index: 2;
+	opacity: 1;
+	min-height: 2px;
+	width: 0%;
+
+	background-color: var(--blue-dark-color);
+
+	transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+
+
+
+/* DELETE NOTE POPUP */
+.deleteNotePopup {
+	cursor: auto;
+	z-index: 5;
+	visibility: hidden;
+	width: 30vw;
+
+	position: fixed;
+	top: 110vh;
+	left: calc(50vw - 30vw/2);
+
+	padding: 40px;
+
+	background-color: var(--white-color);
+	box-shadow: 0 0 30px 5px var(--shadow-color);
+	border-radius: 10px;
+
+	transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.showDelete {
+	top: 30vh;
+	visibility: visible;
+}
+.deletePopupTitle {
+	font-size: 3rem;
+	font-weight: 600;
+
+	margin-bottom: 80px;
+	text-align: center;
+}
+.deletePopupTitle span {
+	font-weight: 400;
+}
+.cancelBtn {
+	width: 30%;
+	background-color: var(--dark-color);
+}
+.deleteBtn {
+	width: 15%;
+	background-color: var(--red-color);
+}
+
+.completeNote {
+	cursor: auto;
+	z-index: 5;
+	visibility: hidden;
+	width: 40vw;
+	min-height: 50vh;
+
+	position: fixed;
+	top: 110vh;
+	left: calc(50vw - 40vw/2);
+
+	padding: 40px;
+
+	border-radius: 5px;
+	border-top-right-radius: 0px;
+	box-shadow: -10px 15px 15px -10px var(--shadow-color), -15px 10px 15px -10px var(--shadow-color);
+
+	transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+	overflow: hidden;
+}
+.completeNote::before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	right: -1px;
+
+	background-image: linear-gradient(45deg, var(--hover-color), var(--hover-color) 50%, var(--white-color) 51%);
+	box-shadow: 0 0 10px var(--shadow-color);
+	border-bottom-left-radius: 5px;
+	width: 30px;
+	height: 30px;
+}
+.horizontalRule {
+	height: 0;
+	width: 70%;
+
+	margin: 40px 0;
+	border-bottom: 1px solid var(--dark-color);
+}
+
+.completeNoteTitle {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.completeNoteBody {
+	font-size: 1.3rem;
+	font-weight: 400;
+	min-height: 45vh;
+	max-height: 45vh;
+	white-space: pre-line;
+
+	scroll-behavior: smooth;
+	scrollbar-color: var(--shadow-color) var(--hover-color);
+	scrollbar-width: thin;
+	overflow-y: auto;
+}
+.completeNoteBody::-webkit-scrollbar {
+	width: 5px;
+}
+.completeNoteBody::-webkit-scrollbar-track-piece {
+	background-color: var(--hover-color);
+}
+.completeNoteBody::-webkit-scrollbar-thumb:vertical {
+	background-color: var(--shadow-color);
+}
+
+.categoryWraper {
+	position: relative;
+	width: max-content;
+	height: min-content;
+}
+.categoryBtn {
+	user-select: none;
+	cursor: pointer;
+
+	padding: 10px;
+	text-align: center;
+}
+.categoryBtn span {
+	display: inline-block;
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.categoryBtn i {
+	font-size: 0.8rem;
+}
+.categoryContainer {
+	visibility: hidden;
+	z-index: 10;
+	width: 140%;
+	height: 0px;
+
+	position: absolute;
+	top: 100%;
+	left: -30%;
+	padding: 0 10%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	background-color: var(--white-color);
+	border-radius: 10px;
+	box-shadow: 0 0 10px 5px var(--shadow-color);
+
+	transition: all 0.15s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.showCategories {
+	visibility: visible;
+	height: 110px;
+	padding: 20px 10%;
+}
+.categoryItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	opacity: 0;
+	margin: 5px 0;
+	padding: 5px;
+
+	border-radius: 5px;
+
+	transition: background-color 0.2s;
+}
+.showCategoryItem {
+	transition: opacity 0.1s 0.1s;
+	opacity: 1;
+}
+.categoryItem:hover {
+	background-color: var(--hover-color);
+}
+.categoryItem span {
+	display: inline-block;
+	margin-right: 10px;
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+.categoryItem i {
+	font-size: 0.9rem;
+}
+
+
+.userPopup {
+	position: absolute;
+	visibility: hidden;
+	height: 40vh;
+	padding: 20px;
+	opacity: 0;
+
+	top: 180%;
+	right: -5vw;
+
+	border-radius: 10px;
+	background-color: var(--white-color);
+	box-shadow: 0 0 10px 5px var(--shadow-color);
+
+	transition: all 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.showUserPopup {
+	visibility: visible;
+	opacity: 1;
+	right: 1vw;
+}
+
+
+.userNameWraper {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 10px;
+	height: 20%;
+}
+.userNameWraper span {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+.userNameWraper span span {
+	display: block;
+	font-weight: 600;
+}
+.userPopupItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	width: 100px;
+	margin: 5px 0;
+	padding: 10px;
+
+	border-radius: 8px;
+
+	transition: background-color 0.1s;
+}
+.userPopupItem:hover {
+	background-color: var(--hover-color);
+}
+.userPopupItem span {
+	display: inline-block;
+	margin-right: 10px;
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+.userPopupItem i {
+	font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1100px) {
+	.addNotePopup {
+		box-sizing: border-box;
+		width: 60vw;
+		left: calc(50vw - 60vw/2);
+		padding: 25px;
+	}
+
+	.cancelBtn {
+		width: 40%;
+		background-color: var(--dark-color);
+	}
+	.deleteBtn {
+		width: 30%;
+		background-color: var(--red-color);
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.addNotePopup {
+		box-sizing: border-box;
+		width: 85vw;
+		left: calc(50vw - 85vw/2);
+		padding: 25px;
+	}
+
+	.inputBar {
+		bottom: 10px;
+		min-height: 1px;
+		width: 0%;
+	}
+
+	.noteTitleWraper {
+		height: 70px;
+	}
+	.noteBodyWraper {
+		height: 280px;
+	}
+	
+
+	.popupBtn {
+		width: 80px;
+		height: 25px;
+		font-size: 0.9rem;
+	}
+	.popupBtn[type="reset"] {
+		width: 130px;
+	}
+
+
+
+	.rightTitleContainer {
+		width: 100px;
+	}
+	.colorPickerWraper {
+		width: 20px;
+		height: 20px;
+	}
+	.colorSelector {
+		width: 16px;
+		height: 16px;
+	}
+	.colorPickerContainer {
+		top: 150%;
+		left: -150%;
+		z-index: 20;
+		width: 68px;
+		height: 0px;
+	
+		padding: 0 10px;
+		grid-template: 
+			"a a a" 25px
+			"a a a" 25px
+			"a a a" 25px;
+		border-top-left-radius: 10px;
+	}
+	.showColorPicker {
+		width: 68px !important;
+		height: 75px !important;
+		padding: 10px 10px !important;
+	}
+
+	.completeNote {
+		box-sizing: border-box;
+		width: 85vw;
+		left: calc(50vw - 85vw/2);
+		padding: 25px;
+	}
+	.horizontalRule {
+		margin: 20px 0;
+	}
+
+	.showCategories {
+		height: 85px;
+	}
+
+
+
+	.deleteNotePopup {
+		width: 80vw;
+		box-sizing: border-box;
+		left: calc(50vw - 80vw/2);
+		padding: 20px;
+	}
+	.showDelete {
+		top: 55vh;
+	}
+	.deletePopupTitle {
+		font-size: 2.2rem;
+		margin-bottom: 20px;
+	}
+	.deletePopupTitle span {
+		font-weight: 400;
+	}
+	.cancelBtn {
+		width: 45%;
+		background-color: var(--dark-color);
+	}
+	.deleteBtn {
+		width: 28%;
+		background-color: var(--red-color);
+	}
+}

@@ -1,0 +1,341 @@
+.externalNotesContainer {
+	width: calc(100vw - 4vw - 100px);
+	min-height: 87vh;
+
+	position: absolute;
+	top: 9vh;
+	right: 0vw;
+
+	padding: 3vh 2vw;
+
+	transition: all 0.4s;
+}
+
+.notesContainer {
+	position: relative;
+	width: 96%;
+	min-height: 10vh;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2%;
+
+	/* border-bottom: 2px double var(--dark-color); */
+}
+
+
+.notesHeader {
+	width: 100%;
+	height: 10%;
+	display: flex;
+	align-items: center;
+	opacity: 0;
+
+	animation: slide 0.5s cubic-bezier(0.23, 1, 0.320, 1) 0.5s forwards;
+}
+@keyframes slide {
+	0% {
+		transform: translateX(-50px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+.notesHeaderText {
+	color: var(--dark-color);
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+.notesHeaderText span {
+	font-weight: 400;
+}
+.notesHeader i {
+	font-size: 0.9rem;
+	margin-left: 15px;
+}
+.horizontalRule {
+	height: 0;
+	width: 70%;
+
+	margin-left: 4%;
+	border-bottom: 2px solid var(--dark-color);
+}
+
+.noteWraper {	
+	margin: 3% 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.note {
+	position: relative;
+	max-width: 15vw;
+	min-width: 10vw;
+	max-height: 40vh;
+	min-height: 20vh;
+	height: 100%;
+	
+	color: var(--dark-color);
+	border-radius: 5px;
+	border-top-right-radius: 0px;
+	box-shadow: -10px 15px 15px -10px var(--shadow-color), -15px 10px 15px -10px var(--shadow-color);
+
+	overflow: hidden;
+}
+.note::before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	right: -1px;
+
+	background-image: linear-gradient(45deg, var(--hover-color), var(--hover-color) 50%, var(--white-color) 51%);
+	box-shadow: 0 0 10px var(--shadow-color);
+	border-bottom-left-radius: 5px;
+	width: 30px;
+	height: 30px;
+}
+
+.favNote {
+	/* box-shadow: -10px 15px 15px -10px var(--shadow-color), -15px 10px 15px -10px var(--shadow-color), 
+	-5px 10px 10px -10px var(--blue-color), -10px 5px 10px -10px var(--blue-color); */
+}
+
+.noteTitle {
+	width: 85%;
+	font-size: 1.7rem;
+	font-weight: 600;
+	margin: 20px auto;
+
+	white-space: pre-line;
+	overflow: hidden;
+}
+.noteBody {
+	width: 85%;
+	margin: 20px auto;
+	max-height: 25vh;
+	white-space: pre-line;
+	font-size: 1.2rem;
+	overflow: hidden;
+}
+
+.noteActionsBar {
+	visibility: hidden;
+	position: relative;
+	top: 10px;
+
+	height: 0%;
+	width: 85%;
+	opacity: 0;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.note:hover .noteActionsBar {
+	visibility: visible;
+	opacity: 1;
+	height: 10%;
+}
+
+.noteActionIcon {
+	cursor: pointer;
+	color: var(--dark-color);
+	min-height: 30px;
+	min-width: 30px;
+
+	font-size: 1.1rem;
+	border-radius: 5px;
+	padding: 2px;
+
+	transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.noteActionIcon:hover {
+	background-color: var(--hover-color);
+}
+
+.addNote {
+	opacity: 0;
+	cursor: pointer;
+	user-select: none;
+	width: max-content;
+	margin: 10px auto;
+
+	padding: 10px;
+
+	border-radius: 10px;
+	box-shadow: -10px 15px 15px -10px var(--shadow-color), -15px 10px 15px -10px var(--shadow-color);
+	background-color: var(--light-blue-color);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	animation: slide 0.5s cubic-bezier(0.23, 1, 0.320, 1) 0.5s forwards;
+}
+.addNoteBtn {
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-right: 10px;
+}
+.addNoteBtn span {
+	font-weight: 400;
+}
+.addNoteIcon {
+	display: block;
+	font-size: 1rem;
+}
+
+.searchTitle {
+	opacity: 0;
+	width: 50%;
+	margin: 2% auto;
+	text-align: center;
+
+	animation: slide 0.5s forwards;
+}
+
+.searchTitle span {
+	font-size: 3rem;
+	font-weight: 600;
+}
+.searchTitle span span {
+	font-weight: 400;
+}
+
+.deleteAllWraper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 30px;
+}
+.noteBg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-size: 100rem;
+	opacity: 0;
+	animation: showNoteBg 0.2s cubic-bezier(0.215, 0.610, 0.355, 1) 0.4s forwards;
+}
+@keyframes showNoteBg {
+	0% {
+		font-size: 100rem;
+		opacity: 0;
+	}
+	100% {
+		font-size: 8rem;
+		opacity: 0.03;
+	}
+}
+.deleteAllBtn {
+	user-select: none;
+	opacity: 0;
+	cursor: pointer;
+	width: max-content;
+	margin: 10px auto;
+
+	padding: 10px;
+
+	border-radius: 10px;
+	box-shadow: -10px 15px 15px -10px var(--shadow-color), -15px 10px 15px -10px var(--shadow-color);
+	background-color: var(--red-color);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	animation: slide 0.5s cubic-bezier(0.23, 1, 0.320, 1) 0.5s forwards;
+}
+.deleteAllBtn span {
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-right: 6px;
+
+	color: var(--dark-color);
+}
+.deleteAllBtn span span {
+	font-weight: 400;
+}
+.deleteAllBtn i {
+	font-size: 1.1rem;
+	color: var(--dark-color);
+}
+
+
+
+@media screen and (max-width: 1100px) {
+	.notesHeader {
+		margin-bottom: 15px;
+	}
+	.note {
+		position: relative;
+		max-width: 25vw;
+		min-width: 25vw;
+		max-height: 25vh;
+		height: 100%;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.externalNotesContainer {
+		width: calc(100vw - 8vw);
+		top: 7vh;
+		padding: 3vh 4vw;
+	}
+	.noteWraper {
+		margin: 6% 4%;
+	}
+	.addNote {
+		margin: 5px auto 30px auto;
+		padding: 8px;
+	}
+	.note {
+		max-width: 35vw;
+		min-width: 35vw;
+		max-height: 25vh;
+	}
+	.note::before {	
+		width: 20px;
+		height: 20px;
+	}
+	.noteTitle {
+		width: 80%;
+		font-size: 1.5rem;
+		margin: 15px auto;
+	}
+	.noteBody {
+		width: 80%;
+		margin: 15px auto;
+		max-height: 15vh;
+	}
+	
+	.noteActionsBar {
+		top: 6px;
+	}
+	.noteActionIcon {
+		min-height: 18px;
+		min-width: 18px;
+		font-size: 1rem;
+	}
+
+
+	.deleteAllWraper {
+		margin-top: -10px;
+		margin-bottom: 15px;
+	}
+	.deleteAllBtn {
+		margin: 10px auto;
+		padding: 8px;
+	}
+
+	.searchTitle {
+		width: 80%;
+		margin: 5% auto;
+	}
+	.searchTitle span {
+		font-size: 2rem;
+	}
+}
