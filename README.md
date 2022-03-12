@@ -1,7 +1,6 @@
 # Keep Plus 🗒️
 
-Page link: https://keep-plus-web.herokuapp.com/
-
+Page link: <a href="https://keep-plus-web.herokuapp.com/" target="_blank">https://keep-plus-web.herokuapp.com/</a>
 ## What's this? 🤔
 
 Keep Plus is a web application that allows you to create and manage
