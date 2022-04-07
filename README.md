@@ -1,6 +1,6 @@
 # Keep Plus 🗒️
 
-[Keep Plus Web](https://keep-plus-production.up.railway.app/)
+[Keep Plus Web](https://keep-plus-web.up.railway.app)
 
 ## What's this? 🤔
 
