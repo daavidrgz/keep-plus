@@ -1,6 +1,6 @@
 # Keep Plus 🗒️
 
-[Keep Plus Web](https://keep-plus.vercel.app/)
+[Keep Plus Web](https://keep-plus-web.herokuapp.com/)
 
 ## What's this? 🤔
 

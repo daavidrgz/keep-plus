@@ -65,7 +65,7 @@ passport.use(User.createStrategy());
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://keep-plus.vercel.app/auth/google/main",
+    callbackURL: "https://keep-plus-web.herokuapp.com/auth/google/main",
   },
   function(accessToken, refreshToken, profile, cb) {
 	let { email, picture, name, sub: googleId } = profile._json;
