@@ -1,15 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import categories from '../Categories.js';
-import animationData from './animations/bin-white-animation.json';
-
-const defaultOptions = {
-	autoplay: false,
-	loop: false,
-	animationData: animationData,
-	rendererSettings: {
-		preserveAspectRatio: 'xMidYMid slice',
-	}
-};
 
 interface MenuItemProps {
 	text: string,

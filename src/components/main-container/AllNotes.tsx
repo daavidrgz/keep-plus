@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import AddNoteButton from './AddNoteButton';
 import Note from './Note';
 import anime from 'animejs';

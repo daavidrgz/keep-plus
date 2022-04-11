@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import NotePopup from '../popups/NotePopup';
 import styles from './notes.module.css';
 

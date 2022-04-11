@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './nav/Nav';
 import Menu from './menu/Menu';
-import Footer from './footer/Footer';
 import MainContainer from './main-container/MainContainer';
 import LogIn from './auth/LogIn';
 import GlobalContext from './GlobalContext'
