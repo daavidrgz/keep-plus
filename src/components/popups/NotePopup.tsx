@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, ChangeEvent } from 'react';
+import { useContext, useEffect, useState, ChangeEvent } from 'react';
 import ColorPicker from './ColorPicker';
 import CategoryPopup from './CategoryPopup';
 import GlobalContext from '../GlobalContext';
@@ -44,8 +44,7 @@ export default function NotePopup(props: NotePopupProps) {
 		setShowCategoryPopup(false);
 	}, [props.show]);
 
-	if ( showCategoryPopup || showColorPicker )
-		document.addEventListener('click', handleOutClick);
+	( showCategoryPopup || showColorPicker ) && document.addEventListener('click', handleOutClick);
 	function handleOutClick(e: globalThis.MouseEvent) {
 		let popup: HTMLElement | null;
 		
@@ -68,6 +67,7 @@ export default function NotePopup(props: NotePopupProps) {
 		const {name, value} = e.currentTarget;
 		setNoteContent(prevValue => ({...prevValue, [name]: value}));
 	}
+
 	function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
 		e.preventDefault();
 		updateNote(noteContent);
@@ -76,6 +76,7 @@ export default function NotePopup(props: NotePopupProps) {
 
 		document.querySelector<HTMLElement>('.nav-bar')!.click(); // Hiding the popup
 	}
+
 	function handlePropertyChange(property: {[propertyType: string]: string}) {
 		setNoteContent(prevValue => ({...prevValue, ...property}));
 		if ( props.popupTitle === "Edit" )
@@ -93,7 +94,6 @@ export default function NotePopup(props: NotePopupProps) {
       	'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({email: userEmail, ...props.noteData, ...noteContent})
-
 		}).then(res => res.status !== 200 ? console.error("error") : props.setNoteContent(param));
 	}
 

@@ -65,7 +65,7 @@ passport.use(User.createStrategy());
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://keep-plus-web.up.railway.app/auth/google/main",
+    callbackURL: "https://keep-plus.vercel.app/auth/google/main",
   },
   function(accessToken, refreshToken, profile, cb) {
 	let { email, picture, name, sub: googleId } = profile._json;
@@ -173,7 +173,7 @@ app.post('/api/delete-note', function(req, res) {
 		if ( err )
 			res.status(404).json('Wrong email');
 		else {
-			const newNotes = user.notes.filter(item => req.body._ids.every(id => item._id !== id));
+			const newNotes = user.notes.filter(note => !req.body._ids.some(id => id == note._id));
 			user.notes = newNotes;
 			user.save();
 			res.status(200).json('OK');
