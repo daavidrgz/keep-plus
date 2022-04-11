@@ -17,9 +17,9 @@ Keep Plus is a web application that allows you to create and manage
 simple notes with a **polished interface** and **integration with google auth**.
 
 It uses:
-* A Mongo database to stores notes and users
-* A backend in Node using Express.js and Passport.js to handle google OAuth
-* A frontend in pure React in a single page
+* A [Mongo](https://github.com/mongodb/mongo) database to store scores and users
+* A backend in Node using [Express.js](https://github.com/expressjs/express) and [Passport.js](https://github.com/jaredhanson/passport) to handle google OAuth
+* A frontend in pure [React](https://github.com/facebook/react) in a single page
 </details>
 
 #
@@ -28,12 +28,16 @@ It uses:
 <summary><strong>&nbsp;S C R E E N S H O T S &nbsp;📸</strong></summary>
 <br>
 
-![main View](screenshots/main-view.png)
+![main View](screenshots/main.png)
 
-![Edit Note](screenshots/edit-note.png)
+![Edit Note](screenshots/add.png)
 
-![Note View](screenshots/note-view.png)
+![Note View](screenshots/search.png)
 
-![Search View](screenshots/searching.png)
+![Search View](screenshots/delete.png)
+
+![Search View](screenshots/view.png)
+
+![Search View](screenshots/expand.png)
 
 </details>
