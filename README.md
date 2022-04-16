@@ -13,6 +13,9 @@
 <summary><strong>&nbsp;O V E R V I E W &nbsp;👁️‍🗨️</strong></summary>
 <br>
 
+**Important note**: As there is no "Register" functionality implemented, it's recommended to use the "Log In with Google" button.
+Much more secure as it's transparent to the developer, abstracting all the password-encryption mess.
+
 Keep Plus is a web application that allows you to create and manage
 simple notes with a **polished interface** and **integration with google auth**.
 
