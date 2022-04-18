@@ -4,7 +4,7 @@
 <summary><strong>&nbsp;P A G E &nbsp; L I N K &nbsp;🌎</strong></summary>
 <br>
 
-[Keep Plus Web](https://keep-plus-web.herokuapp.com/)
+[Keep Plus →](https://keep-plus-web.herokuapp.com/)
 </details>
 
 #
