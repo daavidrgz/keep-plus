@@ -24,7 +24,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const HOST = process.env.HOST || 'localhost';
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/notesDB';
 
 mongoose.set('useUnifiedTopology', true);
@@ -65,10 +64,11 @@ passport.deserializeUser(function (id, done) {
 
 passport.use(User.createStrategy());
 
+const REDIRECT_URI = process.env.REDIRECT_URI || 'http://localhost:3000/auth/google/main';
 passport.use(new GoogleStrategy({
 	clientID: process.env.CLIENT_ID,
 	clientSecret: process.env.CLIENT_SECRET,
-	callbackURL: `https://${HOST}/auth/google/main`,
+	callbackURL: REDIRECT_URI,
 },
 	function (accessToken, refreshToken, profile, cb) {
 		let { email, picture, name, sub: googleId } = profile._json;
