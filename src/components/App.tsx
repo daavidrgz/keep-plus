@@ -17,7 +17,7 @@ interface MainView {
 
 export default function App() {
 	const [userData, setUserData] = useState<UserData | null>(null);
-	const [userFetched, setUserFetched] = useState(false);
+	const [userFetched, setUserFetched] = useState(true);
 	const [mainView, setMainView] = useState<MainView>({
 		text: "All",
 		img: "fi-rs-apps"

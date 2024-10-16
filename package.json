@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@types/animejs": "^3.1.4",
+    "nodemon": "^3.1.7",
     "typescript-plugin-css-modules": "^3.4.0"
   }
 }

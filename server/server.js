@@ -24,8 +24,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/notesDB';
+
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb+srv://admin-david:' + process.env.DB_PASS + '@cluster0.gm6au.mongodb.net/notesDB', { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 
 const notesSchema = new mongoose.Schema({
@@ -51,11 +53,11 @@ userSchema.plugin(findOrCreate);
 const Note = mongoose.model('Note', notesSchema);
 const User = mongoose.model('User', userSchema);
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
 	done(null, user._id);
 });
-passport.deserializeUser(function(id, done) {
-	User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+	User.findById(id, function (err, user) {
 		done(err, user);
 	});
 });
@@ -63,72 +65,72 @@ passport.deserializeUser(function(id, done) {
 passport.use(User.createStrategy());
 
 passport.use(new GoogleStrategy({
-    clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://keep-plus-web.herokuapp.com/auth/google/main",
-  },
-  function(accessToken, refreshToken, profile, cb) {
-	let { email, picture, name, sub: googleId } = profile._json;
-    User.findOrCreate({ googleId: googleId }, { googleId: googleId, email: email, picture: picture, name: name }, function (err, user) {
-      return cb(err, user);
-    });
-  }
+	clientID: process.env.CLIENT_ID,
+	clientSecret: process.env.CLIENT_SECRET,
+	callbackURL: "https://keep-plus.hermo.dev",
+},
+	function (accessToken, refreshToken, profile, cb) {
+		let { email, picture, name, sub: googleId } = profile._json;
+		User.findOrCreate({ googleId: googleId }, { googleId: googleId, email: email, picture: picture, name: name }, function (err, user) {
+			return cb(err, user);
+		});
+	}
 ));
 
-app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-app.get('/auth/google/main', passport.authenticate('google'), function(req, res) {
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google/main', passport.authenticate('google'), function (req, res) {
 	res.redirect("/");
 });
 
-app.get('/api/get-user', function(req, res) {
-	if ( req.isAuthenticated() )
+app.get('/api/get-user', function (req, res) {
+	if (req.isAuthenticated())
 		res.send({
 			email: req.user.email,
 			picture: req.user.picture,
 			name: req.user.name,
 		});
 	else
-		res.send({email: "no user"});
+		res.send({ email: "no user" });
 });
 
-app.get('/api/logout', function(req, res) {
+app.get('/api/logout', function (req, res) {
 	req.logout();
 	res.redirect('/');
 });
 
-app.post('/api/authenticate', function(req, res) {
-	User.findOne({email: req.body.email}, function(err, user) {
-		if ( err || !user || !user.password)
+app.post('/api/authenticate', function (req, res) {
+	User.findOne({ email: req.body.email }, function (err, user) {
+		if (err || !user || !user.password)
 			res.status(404).json('Email not registered');
 		else {
-			if ( user.password !== req.body.password )
+			if (user.password !== req.body.password)
 				res.status(404).json('Incorrect password');
 			else
-				res.status(200).send({email: user.email, name: user.name, picture: user.picture});
+				res.status(200).send({ email: user.email, name: user.name, picture: user.picture });
 		}
 	});
 });
 
-app.post('/api/get-notes', function(req, res) {
-	User.findOne({email: req.body.email}, function(err, user) {
-		if ( err )
+app.post('/api/get-notes', function (req, res) {
+	User.findOne({ email: req.body.email }, function (err, user) {
+		if (err)
 			console.error(err);
 		else {
-			const {bin, category} = req.body;
+			const { bin, category } = req.body;
 			let notes = user.notes.filter(note => (bin == null || note.bin === bin) && (category === 'all' || note.category === category));
 			res.status(200).send(notes);
 		}
 	});
 });
 
-app.post('/api/update-note', function(req, res) {
-	User.findOne({email: req.body.email}, function(err, user) {
-		if ( err )
+app.post('/api/update-note', function (req, res) {
+	User.findOne({ email: req.body.email }, function (err, user) {
+		if (err)
 			res.status(404).json('Wrong email');
-			
+
 		else {
 			const newNotes = user.notes.map(note => {
-				if ( note._id == req.body._id ) {
+				if (note._id == req.body._id) {
 					note.title = req.body.title;
 					note.body = req.body.body;
 					note.date = new Date();
@@ -146,7 +148,7 @@ app.post('/api/update-note', function(req, res) {
 	});
 });
 
-app.post('/api/add-note', function(req, res) {
+app.post('/api/add-note', function (req, res) {
 	const newNote = new Note({
 		title: req.body.title,
 		body: req.body.body,
@@ -157,8 +159,8 @@ app.post('/api/add-note', function(req, res) {
 		color: req.body.color
 	});
 
-	User.findOne({email: req.body.email}, function(err, user) {
-		if ( err )
+	User.findOne({ email: req.body.email }, function (err, user) {
+		if (err)
 			res.status(404).json('Wrong email');
 		else {
 			user.notes.push(newNote);
@@ -168,9 +170,9 @@ app.post('/api/add-note', function(req, res) {
 	});
 });
 
-app.post('/api/delete-note', function(req, res) {
-	User.findOne({email: req.body.email}, function(err, user) {
-		if ( err )
+app.post('/api/delete-note', function (req, res) {
+	User.findOne({ email: req.body.email }, function (err, user) {
+		if (err)
 			res.status(404).json('Wrong email');
 		else {
 			const newNotes = user.notes.filter(note => !req.body._ids.some(id => id == note._id));
@@ -181,16 +183,16 @@ app.post('/api/delete-note', function(req, res) {
 	});
 });
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	res.sendFile(path.resolve(__dirname + '/../build/index.html'));
 });
-app.get('/style.css', function(req, res) {
+app.get('/style.css', function (req, res) {
 	res.sendFile(path.resolve(__dirname + '/../build/style.css'));
 });
-app.get('/uicons-regular-straight.css', function(req, res) {
+app.get('/uicons-regular-straight.css', function (req, res) {
 	res.sendFile(path.resolve(__dirname + '/../build/uicons-regular-straight.css'))
 })
-app.get('/uicons-regular-straight.woff2', function(req, res) {
+app.get('/uicons-regular-straight.woff2', function (req, res) {
 	res.sendFile(path.resolve(__dirname + '/../build/uicons-regular-straight.woff2'))
 })
 
